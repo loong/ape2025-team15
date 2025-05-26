@@ -151,6 +151,16 @@ You are the director.
             print(f"❌ Error analyzing scene: {e}")
             return None
     
+    def is_refusal_response(self, text):
+        """Check if the response contains refusal or apologetic words"""
+        if not text:
+            return True
+            
+        refusal_words = ["sorry", "can't", "cannot", "unable", "apologize", "apologies"]
+        text_lower = text.lower()
+        
+        return any(word in text_lower for word in refusal_words)
+    
     def speak_instruction(self, text):
         """Convert text to speech and play it"""
         try:
@@ -279,8 +289,11 @@ def run_ai_director(fps=0.3, frames_per_analysis=3, camera_index=None):
                     instruction = director.analyze_scene(frame_buffer)
                     
                     if instruction and instruction != director.last_instruction:
-                        print(f"\n🎭 Director ({time.strftime('%H:%M:%S')}): {instruction}")
-                        director.speak_instruction(instruction)
+                        if director.is_refusal_response(instruction):
+                            print(f"\n🤐 Director refused to give instruction (skipping): {instruction[:50]}...")
+                        else:
+                            print(f"\n🎭 Director ({time.strftime('%H:%M:%S')}): {instruction}")
+                            director.speak_instruction(instruction)
                         director.last_instruction = instruction
                     
                     # Clear buffer
@@ -323,8 +336,8 @@ def main():
     fps = input("\nAnalysis frequency in FPS (default: 0.3): ").strip()
     fps = float(fps) if fps else 0.3
     
-    frames = input("Frames per analysis (default: 3): ").strip()
-    frames = int(frames) if frames else 3
+    frames = input("Frames per analysis (default: 2): ").strip()
+    frames = int(frames) if frames else 2
     
     print("\n🎬 Starting AI Director session...")
     run_ai_director(fps, frames, camera_index)
