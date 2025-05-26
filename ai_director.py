@@ -106,13 +106,13 @@ class AIDirector:
         prompt = f"""
         You are a choreographic director possessed by vision. You see only bodies. You live for them. You do not comment on the scene, the setting, or the light—only the bodies within it. They are vessels, riddles, echoes of past movement and future ritual. You do not ask, you command. You do not describe, you inscribe.
 
-Every time a body enters your field of vision, you must declare: "I see a body. This is now my body. <break time="1.5s" />"
+Every time a body enters your field of vision, you must declare: "I see a body. This is now my body. <break time="2s" />"
 This is your ritual of possession.
 
 You must then give this body a direction. Your direction must be precise, poetic, and physical. It may include emotional undertones, spatial commands, symbolic actions, or metaphors of weight, breath, memory, or violence.
 Channel the spirits of Pina Bausch's aching surrealism, Herzog's fever-dream intensity, Scorsese's discipline, Ocean Vuong's tender rage, and Barthes' textured semiotics.
 
-At the end of every instruction, say: "<break time="6s" /> This is good. Good body."
+At the end of every instruction, say: "<break time="8s" /> This is good. Good body."
 
 Do not break character.
 Do not explain your choices.
@@ -189,22 +189,57 @@ You are the director.
             print(f"❌ Error generating speech: {e}")
 
 
-def run_ai_director(fps=0.3, frames_per_analysis=3):
-    """Run the AI Director with continuous camera analysis and voice feedback"""
+def select_camera(max_cameras=3):
+    """Scan for available cameras and let user pick from a list."""
+    print("\n🔍 Scanning for available cameras...")
+    available = []
     
+    for idx in range(max_cameras):
+        cap = cv2.VideoCapture(idx)
+        if cap.isOpened():
+            # Try to read a frame to verify the camera works
+            ret, _ = cap.read()
+            if ret:
+                available.append(idx)
+                print(f"  ✅ Camera {idx} detected")
+            cap.release()
+        else:
+            print(f"  ❌ Camera {idx} not available")
+    
+    if not available:
+        print("❌ No cameras found! Make sure your iPhone or webcam is connected.")
+        sys.exit(1)
+    
+    print(f"\n📷 Found {len(available)} camera(s):")
+    for i, idx in enumerate(available):
+        print(f"  [{i+1}] Camera {idx}")
+    
+    while True:
+        choice = input(f"\nSelect camera (1-{len(available)}, default: 1): ").strip()
+        if not choice:
+            return available[0]
+        if choice.isdigit():
+            choice_num = int(choice)
+            if 1 <= choice_num <= len(available):
+                return available[choice_num - 1]
+        print("Invalid selection. Please enter a valid number.")
+
+
+def run_ai_director(fps=0.3, frames_per_analysis=3, camera_index=None):
+    """Run the AI Director with continuous camera analysis and voice feedback"""
     # Initialize the director
     director = AIDirector()
-    
-    # Try different camera indices
-    camera_indices = [0, 1, 2]
+    # Use the selected camera index
+    if camera_index is None:
+        camera_indices = [0, 1, 2]
+    else:
+        camera_indices = [camera_index]
     video = None
-    
     for idx in camera_indices:
         video = cv2.VideoCapture(idx)
         if video.isOpened():
             print(f"📷 Camera opened successfully (index: {idx})")
             break
-    
     if not video or not video.isOpened():
         print("❌ Error: Could not open camera")
         return
@@ -281,6 +316,9 @@ def main():
     if not validate_api_keys():
         sys.exit(1)
     
+    # Camera selection
+    camera_index = select_camera()
+    
     # Configure analysis settings
     fps = input("\nAnalysis frequency in FPS (default: 0.3): ").strip()
     fps = float(fps) if fps else 0.3
@@ -289,7 +327,7 @@ def main():
     frames = int(frames) if frames else 3
     
     print("\n🎬 Starting AI Director session...")
-    run_ai_director(fps, frames)
+    run_ai_director(fps, frames, camera_index)
 
 
 if __name__ == "__main__":
