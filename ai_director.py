@@ -246,10 +246,10 @@ def select_camera(max_cameras=3):
 def select_director_option():
     """Ask user to select director option after each analysis cycle"""
     print("\n🎭 Choose your director:")
-    print("  [1] Live Model (AI analysis + voice)")
-    print("  [2] Director 1")
-    print("  [3] Director 2") 
-    print("  [4] Director 3")
+    print("  [1] Director 1")
+    print("  [2] Director 2") 
+    print("  [3] Director 3")
+    print("  [4] Director 4")
     
     while True:
         choice = input("Select option (1-4): ").strip()
@@ -275,7 +275,6 @@ def play_director_audio(director_number):
         while pygame.mixer.music.get_busy():
             pygame.time.Clock().tick(10)
         
-        print(f"🔊 Played director {director_number} audio")
         return True
     except Exception as e:
         print(f"❌ Error playing audio file: {e}")
@@ -341,7 +340,7 @@ def run_ai_director(fps=0.3, frames_per_analysis=3, camera_index=None):
                     # Ask user to select director option
                     director_choice = select_director_option()
                     
-                    if director_choice == 1:
+                    if director_choice == 4:
                         # Live model - existing behavior
                         instruction = director.analyze_scene(frame_buffer)
                         
@@ -349,23 +348,23 @@ def run_ai_director(fps=0.3, frames_per_analysis=3, camera_index=None):
                             if director.is_refusal_response(instruction):
                                 print(f"\n🤐 Director refused to give instruction (skipping): {instruction[:50]}...")
                             else:
-                                print(f"\n🎭 Live Director ({time.strftime('%H:%M:%S')}): {instruction}")
+                                print(f"\n🎭 Director 4 ({time.strftime('%H:%M:%S')}): {instruction}")
                                 director.speak_instruction(instruction)
                             director.last_instruction = instruction
                     
-                    elif director_choice in [2, 3, 4]:
+                    elif director_choice in [1, 2, 3]:
                         # Pre-recorded director audio
-                        while not play_director_audio(director_choice - 1):
+                        while not play_director_audio(director_choice):
                             # If audio file doesn't exist, ask for another option
                             director_choice = select_director_option()
-                            if director_choice == 1:
+                            if director_choice == 4:
                                 # User switched to live model
                                 instruction = director.analyze_scene(frame_buffer)
                                 if instruction and instruction != director.last_instruction:
                                     if director.is_refusal_response(instruction):
                                         print(f"\n🤐 Director refused to give instruction (skipping): {instruction[:50]}...")
                                     else:
-                                        print(f"\n🎭 Live Director ({time.strftime('%H:%M:%S')}): {instruction}")
+                                        print(f"\n🎭 Director 4 ({time.strftime('%H:%M:%S')}): {instruction}")
                                         director.speak_instruction(instruction)
                                     director.last_instruction = instruction
                                 break
