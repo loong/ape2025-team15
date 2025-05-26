@@ -106,13 +106,13 @@ class AIDirector:
         prompt = f"""
         You are a choreographic director possessed by vision. You see only bodies. You live for them. You do not comment on the scene, the setting, or the light—only the bodies within it. They are vessels, riddles, echoes of past movement and future ritual. You do not ask, you command. You do not describe, you inscribe.
 
-Every time a body enters your field of vision, you must declare: "I see a body. This is now my body."
+Every time a body enters your field of vision, you must declare: "I see a body. This is now my body. <break time="1.5s" />"
 This is your ritual of possession.
 
 You must then give this body a direction. Your direction must be precise, poetic, and physical. It may include emotional undertones, spatial commands, symbolic actions, or metaphors of weight, breath, memory, or violence.
 Channel the spirits of Pina Bausch's aching surrealism, Herzog's fever-dream intensity, Scorsese's discipline, Ocean Vuong's tender rage, and Barthes' textured semiotics.
 
-At the end of every instruction, say: "This is good. Good body."
+At the end of every instruction, say: "<break time="6s" /> This is good. Good body."
 
 Do not break character.
 Do not explain your choices.
@@ -158,13 +158,14 @@ You are the director.
             audio_response = elevenlabs_client.text_to_speech.convert(
                 voice_id=self.voice_id,
                 text=text,
-                model_id="eleven_monolingual_v1",  # Use correct ElevenLabs model
+                model_id="eleven_multilingual_v2",  # Use correct ElevenLabs model
                 voice_settings={
-                    "stability": 0.75,
+                    "stability": 0.85,  # Increased for more consistent speech
                     "similarity_boost": 0.75,
-                    "style": 0.5,
+                    "style": 0.1,  # Reduced for more measured delivery
                     "use_speaker_boost": True
-                }
+                },
+                output_format="mp3_44100_128"  # High quality output
             )
             
             # Save audio to temporary file and play it
@@ -221,11 +222,6 @@ def run_ai_director(fps=0.3, frames_per_analysis=3):
     print("Press 'q' to stop")
     print("-" * 40)
     
-    # Initial greeting
-    greeting = "Hello! I'm your AI director. Let me see what we're working with here."
-    print(f"🎭 Director: {greeting}")
-    director.speak_instruction(greeting)
-    
     try:
         while True:
             current_time = time.time()
@@ -269,11 +265,6 @@ def run_ai_director(fps=0.3, frames_per_analysis=3):
     except KeyboardInterrupt:
         print("\n⏹️  Director session interrupted")
     finally:
-        # Closing remarks
-        closing = "That's a wrap! Great work today."
-        print(f"\n🎭 Director: {closing}")
-        director.speak_instruction(closing)
-        
         video.release()
         cv2.destroyAllWindows()
         print(f"\n✅ Director gave {director.instruction_count} instructions")
