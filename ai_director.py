@@ -257,6 +257,12 @@ def run_ai_director(fps=0.3, frames_per_analysis=3, camera_index=None):
     # Set camera properties
     video.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     video.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+
+    video.read()
+    
+    # Wait 3 seconds for camera to initialize
+    print("⏳ Waiting 3 seconds for camera to initialize...")
+    time.sleep(3)
     
     frame_interval = 1.0 / fps
     last_capture_time = 0
