@@ -268,9 +268,9 @@ def run_ai_director(fps=0.3, frames_per_analysis=3, camera_index=None):
 
     video.read()
     
-    # Wait 3 seconds for camera to initialize
-    print("⏳ Waiting 3 seconds for camera to initialize...")
-    time.sleep(3)
+    # Wait 2 seconds for camera to initialize
+    print("⏳ Waiting 2 seconds for camera to initialize...")
+    time.sleep(2)
     
     frame_interval = 1.0 / fps
     last_capture_time = 0
