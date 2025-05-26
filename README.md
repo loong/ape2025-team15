@@ -1,14 +1,15 @@
-# Video Analysis Tool with OpenAI GPT-4 Vision
+# AI Theatre Director
 
-This tool analyzes video content using OpenAI's GPT-4 Vision API. It can process both video files and live camera feeds.
+An AI-powered choreographic director that watches through your camera and provides real-time voice feedback to guide your movement and performance.
 
 ## Features
 
-- 📹 Analyze video files with customizable frame sampling
-- 📷 Capture and analyze live camera feed
-- 🤖 Use GPT-4 Vision to describe video content
-- 🎯 Custom prompts for specific analysis needs
-- 🎬 **NEW**: AI Film Director with voice feedback using ElevenLabs
+- 🎭 AI choreographic director with poetic, precise physical directions
+- 🗣️ Natural voice synthesis using ElevenLabs with multilingual support
+- 📷 Real-time camera analysis and continuous feedback
+- 🎬 Multiple director options including pre-recorded and live AI responses
+- 🌍 Bilingual instructions (English and Korean)
+- 🎯 Body-focused choreographic guidance inspired by renowned directors
 
 ## Setup
 
@@ -47,7 +48,7 @@ Replace with your actual API keys:
 
 ### 4. Validate API Keys (Optional but Recommended)
 
-Test your API keys before running the main applications:
+Test your API keys before running the application:
 
 ```bash
 python test_api_keys.py
@@ -57,81 +58,87 @@ This will verify that both your OpenAI and ElevenLabs API keys are valid and wor
 
 ## Usage
 
-### Video Analyzer
-
-```bash
-python video_analyzer.py
-```
-
-#### Options:
-
-1. **Analyze Video File**
-   - Provide path to video file
-   - Set frame sampling rate (default: every 30th frame)
-   - Optionally provide custom analysis prompt
-
-2. **Analyze Camera Feed**
-   - Set recording duration (default: 5 seconds)
-   - Set capture FPS (default: 1 frame per second)
-   - Press 'Q' to stop recording early
-   - Optionally provide custom analysis prompt
-
-3. **Continuous Camera Analysis**
-   - Camera stays open continuously
-   - Analyzes frames in real-time
-   - Configurable FPS and frames per analysis
-   - Press 'Q' to stop
-
-### AI Film Director (NEW!)
+### AI Theatre Director
 
 ```bash
 python ai_director.py
 ```
 
-The AI Director watches through your camera and provides real-time voice feedback to improve your shots!
+The AI Director embodies a choreographic vision that sees only bodies in motion. It provides poetic, precise physical directions inspired by the spirits of Pina Bausch, Herzog, Scorsese, Ocean Vuong, and Barthes.
 
-#### Features:
-- 🎭 Multiple director personalities (encouraging, professional, artistic, strict)
-- 🗣️ Natural voice synthesis using ElevenLabs
-- 📊 Real-time scene analysis
-- 🎬 Continuous feedback loop
+#### How It Works:
 
-#### Director Personalities:
-1. **Encouraging** - Supportive and positive feedback
-2. **Professional** - Technical and precise instructions
-3. **Artistic** - Creative and experimental suggestions
-4. **Strict** - Demanding perfection in every shot
+1. **Camera Detection** - Automatically scans and lets you select from available cameras
+2. **Director Selection** - Choose from 4 director options:
+   - Directors 1-3: Pre-recorded audio responses
+   - Director 4: Live AI-generated instructions with voice synthesis
+3. **Real-time Analysis** - Continuously analyzes your movement through the camera
+4. **Voice Feedback** - Provides spoken directions in both English and Korean
 
-### Example Usage
+#### Director Personality:
+
+The AI director follows a specific ritual:
+- Declares possession of your body upon detection
+- Provides precise, poetic, and physical directions
+- Focuses solely on body movement and positioning
+- Delivers instructions with emotional undertones and spatial commands
+- Concludes each direction with affirmation
+
+#### Configuration Options:
+
+- **Analysis Frequency**: Adjustable FPS for frame capture (default: 0.3)
+- **Frames per Analysis**: Number of frames analyzed together (default: 2)
+- **Camera Selection**: Choose from detected cameras
+- **Director Type**: Switch between pre-recorded and live AI responses
+
+### Example Session
 
 ```bash
 # Activate virtual environment
 source venv/bin/activate
 
-# Run the standard analyzer
-python video_analyzer.py
-
-# Or run the AI Director
+# Run the AI Director
 python ai_director.py
 
-# Follow the prompts to configure your session
+# Follow the prompts to:
+# 1. Select your camera
+# 2. Configure analysis settings
+# 3. Choose director type during session
+# 4. Receive real-time choreographic guidance
 ```
 
 ## Requirements
 
 - Python 3.8+
 - OpenAI API key with GPT-4 Vision access
-- ElevenLabs API key (for AI Director)
-- Camera access (for live feed modes)
-- Video file (for file analysis mode)
+- ElevenLabs API key for voice synthesis
+- Camera access (webcam, iPhone, etc.)
+- pygame for audio playback
+
+## Technical Details
+
+- Uses GPT-4 Vision (gpt-4o) for real-time scene analysis
+- ElevenLabs multilingual model for natural speech synthesis
+- OpenCV for camera capture and frame processing
+- Configurable frame sampling to manage API costs
+- Real-time audio playback with pygame
 
 ## Notes
 
-- The tool samples frames to reduce API costs
-- Camera feed captures frames at specified FPS for the duration
-- Adjust frame sampling/capture rates based on your needs and API limits
-- AI Director provides voice feedback at configurable intervals
+- The director focuses exclusively on body movement and positioning
+- Instructions are delivered in both English and Korean
+- Frame analysis frequency can be adjusted based on your needs and API limits
+- Press 'Q' to stop the director session at any time
+- Pre-recorded director options (1-3) require audio files in `generated_assets/` directory 
 
-## Author
+## Team
 
-Long Hoang 
+This project was build during the APE Camp in Seoul organized by the Korean Arts Council in 2025.
+
+Team members:
+ - Halim Madi (Artist)
+ - Gyuwon Lee (Artist)
+ - Hyunjin Kim (Artist)
+ - Choo Heonsoo (3D Modelling)
+ - Eunsong Shin (Sound Design)
+ - Long Hoang (Engineering)
