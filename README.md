@@ -2,6 +2,18 @@
 
 An AI-powered choreographic director that watches through your camera and provides real-time voice feedback to guide your movement and performance.
 
+## Team
+
+This project was build during the APE Camp in Seoul organized by the Korean Arts Council in 2025.
+
+Team members:
+ - [Halim Madi](https://www.instagram.com/yalla_halim/) (Artist)
+ - [Gyuwon Lee](https://www.instagram.com/gwsylvia) (Artist)
+ - [Hyunjin Kim](https://www.instagram.com/jin_252_) (Artist)
+ - [Choo Heonsoo](https://www.instagram.com/hohenheim_plask) (3D Modelling)
+ - [Eunsong Shin](https://www.instagram.com/comp._.silversssong/) (Sound Design)
+ - [Long Hoang](https://github.com/loong/) (Engineering)
+
 ## Features
 
 - 🎭 AI choreographic director with poetic, precise physical directions
@@ -106,39 +118,3 @@ python ai_director.py
 # 3. Choose director type during session
 # 4. Receive real-time choreographic guidance
 ```
-
-## Requirements
-
-- Python 3.8+
-- OpenAI API key with GPT-4 Vision access
-- ElevenLabs API key for voice synthesis
-- Camera access (webcam, iPhone, etc.)
-- pygame for audio playback
-
-## Technical Details
-
-- Uses GPT-4 Vision (gpt-4o) for real-time scene analysis
-- ElevenLabs multilingual model for natural speech synthesis
-- OpenCV for camera capture and frame processing
-- Configurable frame sampling to manage API costs
-- Real-time audio playback with pygame
-
-## Notes
-
-- The director focuses exclusively on body movement and positioning
-- Instructions are delivered in both English and Korean
-- Frame analysis frequency can be adjusted based on your needs and API limits
-- Press 'Q' to stop the director session at any time
-- Pre-recorded director options (1-3) require audio files in `generated_assets/` directory 
-
-## Team
-
-This project was build during the APE Camp in Seoul organized by the Korean Arts Council in 2025.
-
-Team members:
- - Halim Madi (Artist)
- - Gyuwon Lee (Artist)
- - Hyunjin Kim (Artist)
- - Choo Heonsoo (3D Modelling)
- - Eunsong Shin (Sound Design)
- - Long Hoang (Engineering)
