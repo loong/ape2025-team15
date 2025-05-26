@@ -97,9 +97,5 @@ The refactored code follows a modular architecture with clear separation of conc
 ## API Keys
 
 You'll need:
-- **OpenAI API key**: With GPT-4 Vision access
-- **ElevenLabs API key**: For text-to-speech functionality
-
-## Author
-
-Long Hoang
+- OpenAI API key with GPT-4 Vision access
+- ElevenLabs API key for text-to-speech
