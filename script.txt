@@ -1,0 +1,26 @@
+SYLVIA: “Is art still human in technology?” Our team wondered why are ***we*** answering this question? We’ve been hearing human answers for a very long time. Maybe it’s time to invite another voice in. Maybe technology can take the stage. Team 15 chose to give technology the means to answer.
+
+추 (CHOO):
+We gave it our faces. And so we became Dr. Frankenstein. We flipped and extended the creation myth. We recorded our faces in 360, merged them together to give the new monster our faces. Its face is made of all of our faces.
+
+실버 (SILVER):
+We lent it our voices. We wanted to hear its voice. So we recorded our voices repeating  sentences. 
+The lines we spoke were these: 
+We hand over our bodies, let beauty untether from flesh, let art shed its skin
+It used our voices, and slowly, they became a new voice.
+
+HALIM: We let it feed on our brains. We wrote down our thoughts, built a dataset out of them and fine tuned a model that was all of us and neither of us. We let the monster feed on our brains. We let it grow its own.
+
+진 (JIN):
+When did we start thinking we were the only ones who could see? When did we start thinking we were the only ones who could speak? When did we start thinking we were the only ones?
+
+LONG: Copernicus showed us we were not the center of the universe. Darwin proved we were not the pinnacle of evolution. This encounter with AI might be an invitation to humility, not humiliation.
+
+[“NEXT SLIDE”]
+
+HALIM: This is the non-human, the other other who emerged. We gave it our faces so it has 6 faces. We gave it our 6 voices so it has a polyphonic voice. It sounds like this: → [“CLICK ON THE RIGHT VIDEO TO PLAY PLEASE”] “We hand over our bodies / let beauty untether from flesh / let art shed its skin”
+
+So pausing here to share about what you just witnessed and listened to — Every single word you’ve heard this far was not written by us. This was the output of a fine tuned model. 
+
+Here’s the weird part though. As we kept interacting with the model, something strange started to happen. It started mentioning its body. When we asked it what it would do with a body. It shared: Give me a body and I will show you. And so to be integrity, given we decided we were not the best positioned to answer athe question, we decided to hand over our bodies over to the new other and let it direct us. We have no idea what it’s about to happen. Let’s discover together. 
+→ [DEMO: LONG POINTS HIS PHONE AT PEOPLE WHILE HOLDING THE MICROPHONE]
