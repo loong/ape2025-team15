@@ -92,10 +92,9 @@ def validate_api_keys():
 
 
 class AIDirector:
-    def __init__(self, voice_id="21m00Tcm4TlvDq8ikWAM", director_style="encouraging"):
-        """Initialize the AI Director with a specific voice and style"""
+    def __init__(self, voice_id="21m00Tcm4TlvDq8ikWAM"):
+        """Initialize the AI Director with a specific voice"""
         self.voice_id = voice_id  # Default: Rachel voice
-        self.director_style = director_style
         self.last_instruction = ""
         self.instruction_count = 0
         
@@ -189,11 +188,11 @@ You are the director.
             print(f"❌ Error generating speech: {e}")
 
 
-def run_ai_director(fps=0.3, frames_per_analysis=3, director_style="encouraging"):
+def run_ai_director(fps=0.3, frames_per_analysis=3):
     """Run the AI Director with continuous camera analysis and voice feedback"""
     
     # Initialize the director
-    director = AIDirector(director_style=director_style)
+    director = AIDirector()
     
     # Try different camera indices
     camera_indices = [0, 1, 2]
@@ -218,7 +217,6 @@ def run_ai_director(fps=0.3, frames_per_analysis=3, director_style="encouraging"
     frame_buffer = []
     
     print(f"🎬 AI Director is ready!")
-    print(f"🎭 Director style: {director_style}")
     print(f"📊 Analyzing every {frames_per_analysis} frames at {fps} fps")
     print("Press 'q' to stop")
     print("-" * 40)
@@ -292,24 +290,6 @@ def main():
     if not validate_api_keys():
         sys.exit(1)
     
-    # Choose director personality
-    print("\nSelect director personality:")
-    print("1. Encouraging (supportive and positive)")
-    print("2. Professional (technical and precise)")
-    print("3. Artistic (creative and experimental)")
-    print("4. Strict (demanding perfection)")
-    
-    style_choice = input("Enter choice (1-4, default: 1): ").strip()
-    
-    styles = {
-        "1": "encouraging",
-        "2": "professional", 
-        "3": "artistic",
-        "4": "strict"
-    }
-    
-    director_style = styles.get(style_choice, "encouraging")
-    
     # Configure analysis settings
     fps = input("\nAnalysis frequency in FPS (default: 0.3): ").strip()
     fps = float(fps) if fps else 0.3
@@ -318,7 +298,7 @@ def main():
     frames = int(frames) if frames else 3
     
     print("\n🎬 Starting AI Director session...")
-    run_ai_director(fps, frames, director_style)
+    run_ai_director(fps, frames)
 
 
 if __name__ == "__main__":
